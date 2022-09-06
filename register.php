@@ -1,62 +1,94 @@
-<?php $host = "ec2-34-246-86-78.eu-west-1.compute.amazonaws.com";
-$port = "5432";
-$dbname = "det5hvobuiil2u";
-$user = "gvwygfsoxatuim";
-$password = "b8667744eb01c77620e1bc72b6f61bdb1931f36bf1f0d88035695cc80dffa394"; 
-$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
-$dbconn = pg_connect($connection_string);
-if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    
-      $sql = "insert into public.user(name,email,password,mobno)values('".$_POST['name']."','".$_POST['email']."','".md5($_POST['pwd'])."','".$_POST['mobno']."')";
-    $ret = pg_query($dbconn, $sql);
-    if($ret){
-        
-            echo "Data saved Successfully";
-    }else{
-        
-            echo "Soething Went Wrong";
-    }
-}
+<html>
 
-?>
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <title>PHP PostgreSQL Registration & Login Example </title>
-  <meta name="keywords" content="PHP,PostgreSQL,Insert,Login">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
-<body>
+<title>LitmusBlox Task</title>
 
-<div class="container">
-  <h2>Register Here </h2>
-  <form method="post">
-  
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" requuired>
-    </div>
-    
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-    </div>
-    
-    <div class="form-group">
-      <label for="pwd">Mobile No:</label>
-      <input type="number" class="form-control" maxlength="10" id="mobileno" placeholder="Enter Mobile Number" name="mobno">
-    </div>
-    
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-    </div>
-     
-    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-  </form>
-</div>
+<body class="text-center text-lg-start">
+    <style>
+        .cascading-right {
+            margin-right: -50px;
+        }
 
+        #but {
+            width: 30%;
+            float: right;
+        }
+
+        @media (max-width: 991.98px) {
+            .cascading-right {
+                margin-right: 0;
+            }
+        }
+    </style>
+    <div class="container py-4" style="width: 500px">
+        <div class="card cascading-right">
+            <div class="card-body p-5 ">
+                <form method="POST">
+                    <h2 class="fw-bold mb-5 text-center">LitmusBlox Task Register</h2>
+                    <div class="form-outline mb-4">
+                        <label class="form-label"> Username </label>
+                        <input type="text" name="username" onkeyup="verifyusername()" id="username_id" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="password_id">Password</label>
+                        <input type="password" name="password" onkeyup="verifyPassword()" id="password_id" class="form-control" />
+                    </div>
+                    <h6>
+                        <p class="form-check-label text-center" id="p1">
+                            Welcome to LitmusBlox
+                        </p>
+                    </h6>
+                    <button type="submit" name="Login" class="btn btn-primary btn-block mb-4 w-100">
+                        Sign in
+                    </button>
+                    <div class="text-center">
+                        <p>Already a Member? <a href="index.php">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
+
+<script>
+    function verifyusername() {
+        var uname = document.getElementById("username_id").value;
+        if (uname == "") {
+            return false;
+        }
+        if (uname.length > 15) {
+            document.getElementById("p1").innerHTML = "<span style='color: red; font-size:16px;'>Password length must not exceed 15 characters</span>";
+            return false;
+        } else {
+            document.getElementById("p1").innerHTML = "<span style='color: green; font-size:16px;'>OK..!</span>";
+        }
+    }
+
+    function verifyPassword() {
+        var pw = document.getElementById("password_id").value;
+        if (pw == "") {
+            return false;
+        }
+        if (pw.length < 8) {
+            document.getElementById("p1").innerHTML = "<span style='color: red; font-size:16px;'>Password Should be Greater than 8 characters</span>";
+            return false;
+        }
+        if (pw.length > 15) {
+            document.getElementById("p1").innerHTML = "<span style='color: red; font-size:16px;'>Password length must not exceed 15 characters</span>";
+            return false;
+        } else {
+            document.getElementById("p1").innerHTML = "<span style='color: green; font-size:16px;'>OK..!</span>";
+        }
+    }
+    <?php
+    $db = pg_connect(getenv("DATABASE_URL"));
+    $query = "INSERT INTO public.limtusbloxtask (UserName, Password)  VALUES('$_POST[username]','$_POST[password]')";
+    $result = pg_query($query);
+    ?>
