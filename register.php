@@ -24,7 +24,7 @@
         <div class="card cascading-right">
             <div class="card-body p-5 ">
                 <form method="POST">
-                    <h2 class="fw-bold mb-5 text-center">LitmusBlox Task Login</h2>
+                    <h2 class="fw-bold mb-5 text-center">LitmusBlox Task Register</h2>
                     <div class="form-outline mb-4">
                         <label class="form-label">Username</label>
                         <input type="text" name="username" onkeyup="verifyusername()" id="username_id" class="form-control" />
@@ -40,10 +40,10 @@
                         </p>
                     </h6>
                     <button type="submit" name="Register" class="btn btn-primary btn-block mb-4 w-100">
-                        Sign in
+                        Sign Up
                     </button>
                     <div class="text-center">
-                        <p>Not a member? <a href="register.php">Register</a></p>
+                        <p>Already a member? <a href="index.php">Login</a></p>
                     </div>
                 </form>
             </div>
