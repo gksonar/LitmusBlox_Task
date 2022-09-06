@@ -12,7 +12,7 @@
   <style>
     .cascading-right {
       margin-right: -50px;
-    } 
+    }
 
     @media (max-width: 991.98px) {
       .cascading-right {
@@ -93,7 +93,7 @@ if (isset($_POST['Login'])) {
   $res = pg_query($db, $query);
   if (pg_num_rows($res) > 0) {
     echo "<script>";
-    echo "document.getElementById('p1').innerHTML='<span style='color: green; font-size:16px;'>Sucess</span>';";
+    echo "document.getElementById('p1').innerHTML='Success';";
     echo "window.location.assign('https://litmusblox.io/');";
     echo "</script>";
   } else {
