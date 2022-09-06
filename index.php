@@ -40,7 +40,7 @@
             </p>
           </h6>
           <button type="submit" name="Login" class="btn btn-primary btn-block mb-4 w-100">
-            Sign up
+            Sign in
           </button>
           <div class="text-center">
             <p>Not a member? <a href="register.php">Register</a></p>

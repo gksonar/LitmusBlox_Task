@@ -44,7 +44,7 @@
                         </p>
                     </h6>
                     <button type="submit" name="Login" class="btn btn-primary btn-block mb-4 w-100">
-                        Sign in
+                        Sign up
                     </button>
                     <div class="text-center">
                         <p>Already a Member? <a href="index.php">Login</a></p>
@@ -91,4 +91,14 @@
     $db = pg_connect(getenv("DATABASE_URL"));
     $query = "INSERT INTO public.limtusbloxtask (UserName, Password)  VALUES('$_POST[username]','$_POST[password]')";
     $result = pg_query($query);
+    if (pg_num_rows($result) > 0) {
+        echo "<script>";
+        echo "document.getElementById('p1').innerHTML='Success';";
+        echo "window.location.assign('index.php');";
+        echo "</script>";
+    } else {
+        echo "<script>";
+        echo "document.getElementById('p1').innerHTML='Invalid';";
+        echo "</script>";
+    }
     ?>
